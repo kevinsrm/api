@@ -1,9 +1,10 @@
 const express = require('express');
+require('dotenv').config();
 const app = express();
-const paginaMensagem = require("./routes");
-const port = 3000;
+const pagina = require("./routes");
+const port = process.env.PORT || 3000;
 
-app.use("/paginaMensagem",paginaMensagem);
+app.use("/pagina",pagina);
 
 
 

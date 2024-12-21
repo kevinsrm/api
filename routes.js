@@ -1,12 +1,13 @@
 const express = require("express");
+require('dotenv').config();
 const route = express.Router();
 const mysql = require("mysql");
 var connection = mysql.createConnection({
-  host : '10.0.0.104',
-  port : 3306,
-  user : 'root',
-  password : 'root',
-  database : 'cadastrados'
+  host : process.env.HOST,
+  port : process.env.PORT,
+  user : process.env.USER,
+  password : process.env.PASSWORD,
+  database : process.env.DATABASE
 });
 connection.connect();
 
@@ -20,25 +21,18 @@ nome: "jesus",
 idade: 33
 }]
 
-route.get("/mensagem",(req,res)=>{
-res.send("ola mundo");  
+//get
+route.get('/users',(req,res)=>{
+  json.push(req.body)
+  res.status(200).send(json);
 })
-
+//post
 route.post('/users',(req,res)=>{
   json.push(req.body)
   res.status(201).send(json);
 })
 
-route.get('/users', (req, res) => {
-    res.status(200).send(`
-        <form method="get" action="/paginaMensagem/users">
-            <input id="pesquisar" name="pesquisar" type="text">
-            <input type="submit" value="Enviar">
-        </form>
-    `);
-});
-
-
+//get no db
 route.get('/users/:id', (req, res) => {
   
 const params = req.params;
@@ -54,9 +48,8 @@ else{
 })
 });
 
-/*
-CRUD COMEÇA AQUI
 
+//put
 route.put("/users/:id",(req,res)=>{
  const paramId = number(req.params.id);
  const body = req.body;
@@ -71,6 +64,6 @@ route.put("/users/:id",(req,res)=>{
    
  })
 })
-*/
+
 
 module.exports = route;

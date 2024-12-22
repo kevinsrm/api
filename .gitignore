@@ -1,0 +1,24 @@
+# Dependências de pacotes
+node_modules/
+
+# Arquivos de log
+*.log
+
+# Arquivos de configuração do IDE (exemplo: Visual Studio Code)
+.vscode/
+
+# Arquivos temporários ou de cache
+*.tmp
+*.bak
+*.swp
+
+# Arquivos de ambiente
+.env
+
+# Diretórios específicos de build
+dist/
+build/
+
+# Arquivos gerados pelo npm
+package-lock.json
+yarn.lock

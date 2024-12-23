@@ -11,6 +11,20 @@ var connection = mysql.createConnection({
 });
 connection.connect();
 
+
+
+//get
+route.get('/',(req,res)=>{
+  connection.query("SELECT * FROM usuarios",(err,result)=>{
+    if(err) throw err;
+    res.status(200).send(result);
+  })
+  
+})
+
+
+
+
 //get
 route.get('/users',(req,res)=>{
   connection.query("SELECT * FROM usuarios",(err,result)=>{
@@ -53,7 +67,7 @@ route.post('/users',(req,res)=>{
 
 //put
 route.put("/users/:id",(req,res)=>{
- const paramId = number(req.params.id);
+ const paramId = Number(req.params.id);
  const body = req.body;
  
  connection.query('UPDATE usuarios SET ? WHERE id = ?',[body,paramId],(erro,result)=>{

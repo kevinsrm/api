@@ -1,9 +1,36 @@
 const express = require("express");
 require('dotenv').config();
 const route = express.Router();
+
+let users = [{
+  "id":1,
+  "nome":"kevin",
+  "telefone":"32123472",
+  "email":"kevin@bli.com"
+},
+{
+ "id":2,
+  "nome":"pedro",
+  "telefone":"32876490",
+  "email":"pedro@bli.com"
+},
+{
+  "id":3,
+  "nome":"julio",
+  "telefone":"32128709",
+  "email":"julio@bli.com"
+}
+]
+/*
 const mysql = require("mysql");
-const db_uri = process.env.DB_URI;
-var connection = mysql.createConnection(db_uri)
+
+var connection = mysql.createConnection({
+  host: ,
+  port: ,
+  user: ,
+  password: ,
+  db: 
+})
 connection.connect();
 
 
@@ -75,6 +102,15 @@ route.put("/users/:id",(req,res)=>{
    
  })
 })
+*/
+route.get("/users",(req,res)=>{
+  res.status(200).send(users)
+})
 
+route.get("/users/:id",(req,res)=>{
+  let params = req.params;
+  let user = users.find(u => u.id == params.id)
+  res.status(200).send(user);
+})
 
 module.exports = route;

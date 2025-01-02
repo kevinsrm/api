@@ -1,10 +1,10 @@
 const express = require('express');
 require('dotenv').config();
 const app = express();
-const pagina = require("./routes");
+const v3 = require("./routes");
 const port = process.env.PORT || 3000;
 
-app.use("/pagina",pagina);
+app.use("/v3",v3);
 
 
 
